@@ -6,7 +6,7 @@
 /*   By: esaci <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/11 15:36:09 by esaci             #+#    #+#             */
-/*   Updated: 2020/08/09 17:35:26 by esaci            ###   ########.fr       */
+/*   Updated: 2020/08/09 20:22:02 by esaci            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,6 +70,11 @@ int		fcts(const char *formati, va_list elias)
 	e = readstrct(formati + 1, 's', elias);
 	ft_modif(&e, 's');
 	ptr = ft_strdupn(va_arg(elias, char*));
+	if (e.flagstrct != -1)
+	{
+		free(ptr);
+		ptr = ft_strdupachar(formati + e.flagstrct + 1, 's');
+	}
 	ptr = ft_s(ptr, e);
 	res = ft_strlen(ptr);
 	ft_putstr_fd(ptr, 1);
